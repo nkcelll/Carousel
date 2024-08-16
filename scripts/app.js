@@ -1,26 +1,14 @@
 import { personal } from "../data/employe.js";
-import { eventDispaly } from "./events.js";
+// import { eventDispaly } from "./events.js";
   
 
+let index = 0
+
 function display () {
-  
-  
- 
-  let index = 0
     
   const {img, name, profession, bio} = personal[index]
 
-  localStorage.getItem('carousell');
-
-  
-
-  // if(savedReview) {
-  //   index = personal.findIndex()
-  // }
-
-  
-  const displayHTML = document.querySelector('.review-display')
-  
+  let displayHTML = document.querySelector('.review-display')
   
   let html = 
               `   
@@ -31,37 +19,31 @@ function display () {
               `;
 
   displayHTML.innerHTML = html
-
-  localStorage.setItem('carousell', personal[index])
-
-  
-  const btnElementArrows = document.querySelectorAll('.js-btn')
-  
-
- 
-
-  // btnElementArrows.forEach((btn) => {
-  //   btn.addEventListener('click', (event) => {
-  //     const btnAction = event.currentTarget.dataset.action
-      
-  //     if (btnAction === 'prev') {
-  //       (index - 1 + personal.length) % personal.length
-        
-  //     }else if (btnAction === 'next') {
-  //       (index + 1) % personal.length
-        
-  //     }
-  //     console.log(btnAction)
-  //     display(btnAction)
-  //   });
-  // });
-
-  eventDispaly(personal[index])
-  
-  
-
 };
+
+
+function eventDispaly() {
+  const btnElementArrows = document.querySelectorAll('.js-btn')
+
+  btnElementArrows.forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      const btnAction = event.currentTarget.dataset.action
+      
+      if (btnAction === 'prev') {
+        index = (index - 1 + personal.length) % personal.length
+        
+      }else if (btnAction === 'next') {
+        // index = (index + 1) % personal.length
+        index = (index + 1) % personal.length
+      }
+      display()
+    });
+  });
+}
+
 display()
+eventDispaly(); 
+
 
 
 

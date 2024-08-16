@@ -26,5 +26,4 @@ export const personal = [{
              in the first place.
      
             `
-    
 }]
